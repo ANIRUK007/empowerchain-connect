@@ -19,11 +19,12 @@ const Index = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("animate-fade-up");
+            entry.target.style.opacity = "1";
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
     );
 
     const sections = document.querySelectorAll(".animate-on-scroll");
@@ -73,34 +74,37 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-background/90">
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-28 relative overflow-hidden" ref={heroRef}>
+      <section 
+        className="pt-28 pb-20 md:pt-36 md:pb-28 relative overflow-hidden" 
+        ref={heroRef}
+      >
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-empowered-50/50 to-transparent dark:from-empowered-950/30 dark:to-transparent -z-10"></div>
         
         {/* Background decorations */}
-        <div className="absolute top-40 left-20 w-72 h-72 bg-empowered-300/10 dark:bg-empowered-700/10 rounded-full blur-3xl -z-10"></div>
-        <div className="absolute bottom-40 right-20 w-96 h-96 bg-blue-300/10 dark:bg-blue-700/10 rounded-full blur-3xl -z-10"></div>
+        <div className="absolute top-40 left-5 md:left-20 w-60 md:w-72 h-60 md:h-72 bg-empowered-300/10 dark:bg-empowered-700/10 rounded-full blur-3xl -z-10"></div>
+        <div className="absolute bottom-40 right-5 md:right-20 w-80 md:w-96 h-80 md:h-96 bg-blue-300/10 dark:bg-blue-700/10 rounded-full blur-3xl -z-10"></div>
         
-        <div className="container max-w-5xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center px-3 py-1.5 mb-6 border border-empowered-200 dark:border-empowered-800/40 rounded-full bg-white/80 dark:bg-gray-900/60 backdrop-blur-sm">
+        <div className="container max-w-5xl mx-auto px-4 sm:px-6 text-center">
+          <div className="inline-flex items-center px-3 py-1.5 mb-6 border border-empowered-200 dark:border-empowered-800/40 rounded-full bg-white/80 dark:bg-gray-900/60 backdrop-blur-sm animate-fade-in">
             <span className="bg-empowered-500 text-white text-xs px-2 py-0.5 rounded-full mr-2">New</span>
             <span className="text-sm">Introducing blockchain credentials</span>
           </div>
           
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-empowered-700 to-empowered-500 dark:from-empowered-400 dark:to-empowered-200">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-empowered-700 to-empowered-500 dark:from-empowered-400 dark:to-empowered-200 animate-fade-in" style={{animationDelay: "0.2s"}}>
             Learn, Build, Verify
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto animate-fade-in" style={{animationDelay: "0.4s"}}>
             An AI-powered platform connecting students with personalized skill development, 
             real-world projects, and mentors, with blockchain-verified credentials.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{animationDelay: "0.6s"}}>
             <Button 
               size="lg" 
               className="bg-empowered-500 hover:bg-empowered-600 text-white"
@@ -122,13 +126,13 @@ const Index = () => {
             </Button>
           </div>
           
-          <div className="mt-20 relative">
+          <div className="mt-16 md:mt-20 relative animate-fade-in" style={{animationDelay: "0.8s"}}>
             <div className="absolute -inset-4 blur-xl bg-gradient-to-r from-blue-100 to-empowered-100 dark:from-blue-900/20 dark:to-empowered-900/20 rounded-2xl -z-10"></div>
-            <GlassCard className="overflow-hidden border border-white/50 dark:border-gray-800/50">
+            <GlassCard className="overflow-hidden border border-white/50 dark:border-gray-800/50 shadow-md">
               <img 
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
                 alt="Students collaborating" 
-                className="w-full h-[300px] md:h-[400px] object-cover rounded-lg"
+                className="w-full h-[250px] md:h-[400px] object-cover rounded-lg"
               />
             </GlassCard>
           </div>
@@ -136,9 +140,9 @@ const Index = () => {
       </section>
       
       {/* Features Section */}
-      <section className="py-20 md:py-32 relative" ref={featuresRef}>
-        <div className="container px-6 mx-auto">
-          <div className="text-center mb-16 animate-on-scroll opacity-0">
+      <section className="py-16 md:py-24 relative" ref={featuresRef}>
+        <div className="container px-4 sm:px-6 mx-auto">
+          <div className="text-center mb-12 md:mb-16 animate-on-scroll opacity-0">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Empowering Students for the Future</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Our platform combines cutting-edge AI with blockchain technology to create 
@@ -146,7 +150,7 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {features.map((feature, index) => (
               <GlassCard 
                 key={index} 
@@ -166,17 +170,17 @@ const Index = () => {
       </section>
       
       {/* Blockchain Integration Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-empowered-50/30 dark:from-gray-900 dark:to-empowered-950/10 relative">
-        <div className="container px-6 mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+      <section className="py-16 md:py-24 bg-gradient-to-b from-white to-empowered-50/30 dark:from-gray-900 dark:to-empowered-950/10 relative">
+        <div className="container px-4 sm:px-6 mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="animate-on-scroll opacity-0 order-2 md:order-1">
               <div className="relative">
                 <div className="absolute -inset-4 blur-xl bg-gradient-to-r from-blue-100/50 to-empowered-100/50 dark:from-blue-900/20 dark:to-empowered-900/20 rounded-2xl -z-10"></div>
-                <GlassCard className="overflow-hidden border border-white/50 dark:border-gray-800/50">
+                <GlassCard className="overflow-hidden border border-white/50 dark:border-gray-800/50 shadow-md">
                   <img 
                     src="https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80" 
                     alt="Blockchain Technology" 
-                    className="w-full h-[300px] object-cover rounded-lg"
+                    className="w-full h-[250px] md:h-[300px] object-cover rounded-lg"
                   />
                 </GlassCard>
               </div>
@@ -231,8 +235,8 @@ const Index = () => {
       </section>
       
       {/* CTA Section */}
-      <section className="py-20 md:py-32">
-        <div className="container px-6 mx-auto">
+      <section className="py-16 md:py-24">
+        <div className="container px-4 sm:px-6 mx-auto">
           <div className="max-w-4xl mx-auto text-center animate-on-scroll opacity-0">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Empower Your Education?</h2>
             <p className="text-lg mb-8 text-muted-foreground">
