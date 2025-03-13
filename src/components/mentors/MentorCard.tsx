@@ -10,47 +10,66 @@ export interface Mentor {
   id: string;
   name: string;
   title: string;
-  company: string;
+  organization?: string;
+  company?: string;
   bio: string;
   expertise: string[];
   avatarUrl?: string;
+  imageUrl?: string;
   rating: number;
-  availability: "available" | "limited" | "unavailable";
+  reviews?: number;
+  availability: string;
 }
 
 interface MentorCardProps {
   mentor: Mentor;
   className?: string;
+  featured?: boolean;
 }
 
-const MentorCard = ({ mentor, className }: MentorCardProps) => {
+const MentorCard = ({ mentor, className, featured }: MentorCardProps) => {
   // Helper to display availability status
   const getAvailabilityStatus = () => {
-    switch (mentor.availability) {
+    const availability = mentor.availability.toLowerCase();
+    
+    if (availability.includes("mon") || availability.includes("tue") || 
+        availability.includes("wed") || availability.includes("thu") || 
+        availability.includes("fri") || availability.includes("sat") || 
+        availability.includes("sun")) {
+      return {
+        label: mentor.availability,
+        color: "text-green-500 bg-green-100 dark:bg-green-900/20",
+      };
+    }
+    
+    switch (availability) {
       case "available":
         return {
           label: "Available",
           color: "text-green-500 bg-green-100 dark:bg-green-900/20",
         };
       case "limited":
+      case "limited availability":
         return {
           label: "Limited Availability",
           color: "text-orange-500 bg-orange-100 dark:bg-orange-900/20",
         };
       case "unavailable":
+      case "currently unavailable":
         return {
           label: "Currently Unavailable",
           color: "text-red-500 bg-red-100 dark:bg-red-900/20",
         };
       default:
         return {
-          label: "Unknown",
+          label: mentor.availability,
           color: "text-gray-500 bg-gray-100 dark:bg-gray-900/20",
         };
     }
   };
 
   const availability = getAvailabilityStatus();
+  const organization = mentor.organization || mentor.company || "";
 
   // Generate star rating
   const renderStars = () => {
@@ -104,9 +123,9 @@ const MentorCard = ({ mentor, className }: MentorCardProps) => {
       hoverEffect
     >
       <div className="flex items-center space-x-4 mb-4">
-        {mentor.avatarUrl ? (
+        {(mentor.avatarUrl || mentor.imageUrl) ? (
           <img
-            src={mentor.avatarUrl}
+            src={mentor.avatarUrl || mentor.imageUrl}
             alt={mentor.name}
             className="h-16 w-16 rounded-full object-cover border-2 border-white/50 dark:border-gray-800/50"
           />
@@ -118,7 +137,7 @@ const MentorCard = ({ mentor, className }: MentorCardProps) => {
         <div>
           <h3 className="font-semibold text-lg">{mentor.name}</h3>
           <p className="text-sm text-muted-foreground">
-            {mentor.title} at {mentor.company}
+            {mentor.title} {organization ? `at ${organization}` : ""}
           </p>
           <div className="flex mt-1">
             {renderStars()}
@@ -149,10 +168,10 @@ const MentorCard = ({ mentor, className }: MentorCardProps) => {
       </div>
 
       <Button 
-        disabled={mentor.availability === "unavailable"}
+        disabled={mentor.availability.toLowerCase().includes("unavailable")}
         className={cn(
           "w-full mt-auto",
-          mentor.availability === "available" 
+          mentor.availability.toLowerCase().includes("available") 
             ? "bg-empowered-500 hover:bg-empowered-600" 
             : ""
         )}

@@ -12,6 +12,9 @@ import Mentors from "./pages/Mentors";
 import Projects from "./pages/Projects";
 import NotFound from "./pages/NotFound";
 
+// Import the Project type
+import "./components/projects/Project";
+
 const queryClient = new QueryClient();
 
 const App = () => (

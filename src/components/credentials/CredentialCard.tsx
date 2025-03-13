@@ -11,11 +11,13 @@ export interface Credential {
   title: string;
   issuer: string;
   issueDate: string;
+  expiryDate?: string;
+  image?: string;
   description: string;
   skills: string[];
+  status: string;
+  txHash?: string;
   imageUrl?: string;
-  verificationHash?: string;
-  verified: boolean;
 }
 
 interface CredentialCardProps {
@@ -30,12 +32,15 @@ const CredentialCard = ({ credential, className }: CredentialCardProps) => {
     day: 'numeric'
   });
 
+  // Check if status is "verified"
+  const isVerified = credential.status === "verified";
+
   return (
     <GlassCard
       className={cn("relative overflow-hidden", className)}
       hoverEffect
     >
-      {credential.verified && (
+      {isVerified && (
         <div className="absolute -right-12 -top-6 transform rotate-45 bg-empowered-500 text-white px-12 py-1 text-xs">
           Verified
         </div>
@@ -45,10 +50,10 @@ const CredentialCard = ({ credential, className }: CredentialCardProps) => {
           <h3 className="font-semibold text-lg mb-1">{credential.title}</h3>
           <p className="text-muted-foreground text-sm">{credential.issuer}</p>
         </div>
-        {credential.imageUrl && (
+        {(credential.image || credential.imageUrl) && (
           <div className="w-12 h-12 rounded-md overflow-hidden border border-border">
             <img
-              src={credential.imageUrl}
+              src={credential.image || credential.imageUrl}
               alt={credential.issuer}
               className="w-full h-full object-cover"
             />
@@ -71,10 +76,10 @@ const CredentialCard = ({ credential, className }: CredentialCardProps) => {
         ))}
       </div>
 
-      {credential.verificationHash && (
+      {credential.txHash && (
         <div className="bg-muted/50 rounded-md p-2 mb-4 overflow-hidden">
           <p className="text-xs font-mono text-muted-foreground truncate">
-            {credential.verificationHash}
+            {credential.txHash}
           </p>
         </div>
       )}
@@ -84,7 +89,7 @@ const CredentialCard = ({ credential, className }: CredentialCardProps) => {
           <Award className="h-3.5 w-3.5 mr-1" />
           View Details
         </Button>
-        {credential.verified && (
+        {isVerified && (
           <Button variant="ghost" size="sm" className="text-xs">
             <ExternalLink className="h-3.5 w-3.5 mr-1" />
             Verify on Aptos

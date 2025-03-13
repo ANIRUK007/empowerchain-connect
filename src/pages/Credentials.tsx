@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Filter, CheckCircle, Clock, ArrowRight, Info } from "lucide-react";
@@ -149,7 +148,7 @@ const Credentials = () => {
                       </div>
                       <p className="text-sm text-muted-foreground">Issued by {credential.issuer} on {credential.issueDate}</p>
                       <div className="mt-2 bg-muted/50 p-2 rounded-md font-mono text-xs overflow-hidden text-ellipsis">
-                        <span className="text-muted-foreground">TX: </span>
+                        <span className="text-muted-foreground">TX: </span> 
                         <span>{credential.txHash}</span>
                       </div>
                       <div className="flex justify-end mt-2">

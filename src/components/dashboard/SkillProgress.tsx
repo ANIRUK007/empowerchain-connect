@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Progress } from "@/components/ui/progress";
+import { CustomProgress } from "@/components/ui/custom-progress";
 import { cn } from "@/lib/utils";
 
 export interface Skill {
@@ -57,7 +57,7 @@ const SkillProgress = ({ skill, className }: SkillProgressProps) => {
         </div>
         <span className="text-xs text-muted-foreground">{skill.progress}%</span>
       </div>
-      <Progress 
+      <CustomProgress 
         value={skill.progress} 
         className="h-1.5"
         indicatorClassName={getProgressColor(skill.category)}
