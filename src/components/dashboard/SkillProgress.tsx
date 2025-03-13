@@ -12,11 +12,21 @@ export interface Skill {
 }
 
 interface SkillProgressProps {
-  skill: Skill;
+  skill?: Skill;
   className?: string;
+  name?: string;
+  progress?: number;
+  category?: string;
+  isVerified?: boolean;
 }
 
-const SkillProgress = ({ skill, className }: SkillProgressProps) => {
+const SkillProgress = ({ skill, className, name, progress, category, isVerified }: SkillProgressProps) => {
+  // Use either direct props or skills object
+  const skillName = name || (skill?.name || "");
+  const skillProgress = progress || (skill?.progress || 0);
+  const skillCategory = category || (skill?.category || "");
+  const skillIsVerified = isVerified || skill?.isVerified;
+
   // Different colors based on category
   const getProgressColor = (category: string) => {
     switch (category.toLowerCase()) {
@@ -37,8 +47,8 @@ const SkillProgress = ({ skill, className }: SkillProgressProps) => {
     <div className={cn("mb-4", className)}>
       <div className="flex justify-between items-center mb-1">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-medium">{skill.name}</span>
-          {skill.isVerified && (
+          <span className="text-sm font-medium">{skillName}</span>
+          {skillIsVerified && (
             <span className="inline-flex items-center justify-center bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 rounded-full h-4 w-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -55,15 +65,15 @@ const SkillProgress = ({ skill, className }: SkillProgressProps) => {
             </span>
           )}
         </div>
-        <span className="text-xs text-muted-foreground">{skill.progress}%</span>
+        <span className="text-xs text-muted-foreground">{skillProgress}%</span>
       </div>
       <CustomProgress 
-        value={skill.progress} 
+        value={skillProgress} 
         className="h-1.5"
-        indicatorClassName={getProgressColor(skill.category)}
+        indicatorClassName={getProgressColor(skillCategory)}
       />
       <div className="mt-1">
-        <span className="text-xs text-muted-foreground">{skill.category}</span>
+        <span className="text-xs text-muted-foreground">{skillCategory}</span>
       </div>
     </div>
   );

@@ -23,4 +23,6 @@ export interface Project {
   featured?: boolean;
   credentialOffered?: boolean;
   status?: string;
+  // Adding these properties to handle mapping from the projectsData format
+  organizationLogo?: string;
 }
