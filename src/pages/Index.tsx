@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -19,7 +18,7 @@ const Index = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("animate-fade-up");
-            entry.target.style.opacity = "1";
+            entry.target.classList.add("opacity-100");
             observer.unobserve(entry.target);
           }
         });
@@ -29,6 +28,7 @@ const Index = () => {
 
     const sections = document.querySelectorAll(".animate-on-scroll");
     sections.forEach((section) => {
+      section.classList.add("opacity-0");
       observer.observe(section);
     });
 
@@ -58,13 +58,13 @@ const Index = () => {
     },
     {
       icon: <Award className="h-6 w-6" />,
-      title: "Verified Credentials",
-      description: "Blockchain-secured certifications to validate your achievements"
+      title: "Digital Portfolios",
+      description: "Showcase your achievements and professional growth"
     },
     {
       icon: <Database className="h-6 w-6" />,
-      title: "Blockchain Portfolio",
-      description: "Showcase your work in a tamper-proof decentralized portfolio"
+      title: "Skills Framework",
+      description: "Structured approach to building valuable career skills"
     },
     {
       icon: <BarChart3 className="h-6 w-6" />,
@@ -178,8 +178,8 @@ const Index = () => {
                 <div className="absolute -inset-4 blur-xl bg-gradient-to-r from-blue-100/50 to-empowered-100/50 dark:from-blue-900/20 dark:to-empowered-900/20 rounded-2xl -z-10"></div>
                 <GlassCard className="overflow-hidden border border-white/50 dark:border-gray-800/50 shadow-md">
                   <img 
-                    src="https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80" 
-                    alt="Blockchain Technology" 
+                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80" 
+                    alt="Education Technology" 
                     className="w-full h-[250px] md:h-[300px] object-cover rounded-lg"
                   />
                 </GlassCard>
@@ -187,10 +187,10 @@ const Index = () => {
             </div>
             
             <div className="animate-on-scroll opacity-0 order-1 md:order-2">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Aptos Blockchain Integration</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Education Technology</h2>
               <p className="text-lg mb-6 text-muted-foreground">
-                We've integrated with Aptos blockchain to provide you with secure, 
-                tamper-proof credentials and a decentralized portfolio.
+                Our platform uses technology to provide you with innovative learning experiences
+                and a comprehensive skill development ecosystem.
               </p>
               
               <ul className="space-y-4 mb-8">
@@ -200,7 +200,7 @@ const Index = () => {
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
                   </div>
-                  <span>Tamper-proof digital skill credentials stored on-chain</span>
+                  <span>Cutting-edge learning management systems</span>
                 </li>
                 <li className="flex items-start">
                   <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center mr-3 mt-0.5">
@@ -208,7 +208,7 @@ const Index = () => {
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
                   </div>
-                  <span>Decentralized student portfolios for immutable achievement records</span>
+                  <span>Digital portfolios to showcase your work</span>
                 </li>
                 <li className="flex items-start">
                   <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center mr-3 mt-0.5">
@@ -216,7 +216,7 @@ const Index = () => {
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
                   </div>
-                  <span>Potential support for decentralized grant/funding mechanisms</span>
+                  <span>Advanced skills tracking and analytics</span>
                 </li>
               </ul>
               
@@ -224,8 +224,8 @@ const Index = () => {
                 className="bg-empowered-500 hover:bg-empowered-600"
                 asChild
               >
-                <Link to="/credentials">
-                  Learn More About Verification
+                <Link to="/dashboard">
+                  Explore Your Dashboard
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
