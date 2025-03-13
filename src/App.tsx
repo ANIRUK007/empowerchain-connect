@@ -10,6 +10,13 @@ import Portfolio from "./pages/Portfolio";
 import Mentors from "./pages/Mentors";
 import Projects from "./pages/Projects";
 import NotFound from "./pages/NotFound";
+import Documentation from "./pages/Documentation";
+import Guides from "./pages/Guides";
+import Support from "./pages/Support";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
+import Blog from "./pages/Blog";
+import AboutUs from "./pages/AboutUs";
 
 // Import the Project type
 import "./components/projects/Project";
@@ -28,6 +35,16 @@ const App = () => (
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/mentors" element={<Mentors />} />
           <Route path="/projects" element={<Projects />} />
+          
+          {/* Support and Legal Pages */}
+          <Route path="/documentation" element={<Documentation />} />
+          <Route path="/guides" element={<Guides />} />
+          <Route path="/support" element={<Support />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/about" element={<AboutUs />} />
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

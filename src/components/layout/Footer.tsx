@@ -11,7 +11,6 @@ const Footer = () => {
       title: "Platform",
       links: [
         { label: "Dashboard", href: "/dashboard" },
-        { label: "Credentials", href: "/credentials" },
         { label: "Portfolio", href: "/portfolio" },
         { label: "Mentors", href: "/mentors" },
         { label: "Projects", href: "/projects" },
@@ -20,27 +19,27 @@ const Footer = () => {
     {
       title: "Resources",
       links: [
-        { label: "Documentation", href: "#" },
-        { label: "Guides", href: "#" },
-        { label: "API", href: "#" },
-        { label: "Support", href: "#" },
+        { label: "Documentation", href: "/documentation" },
+        { label: "Guides", href: "/guides" },
+        { label: "Blog", href: "/blog" },
+        { label: "Support", href: "/support" },
       ],
     },
     {
       title: "Legal",
       links: [
-        { label: "Terms", href: "#" },
-        { label: "Privacy", href: "#" },
+        { label: "Terms", href: "/terms" },
+        { label: "Privacy", href: "/privacy" },
         { label: "Cookies", href: "#" },
       ],
     },
     {
       title: "Company",
       links: [
-        { label: "About Us", href: "#" },
+        { label: "About Us", href: "/about" },
         { label: "Careers", href: "#" },
-        { label: "Blog", href: "#" },
-        { label: "Contact", href: "#" },
+        { label: "Blog", href: "/blog" },
+        { label: "Contact", href: "/support" },
       ],
     },
   ];
